@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="views/orders/orders.css" />
+<header-directive header="page"></header-directive>
+<main class="main">
+    <section>
+        <div class="orders-container">
+            <div class="tabs-box">
+                <span class="tab active">All Orders</span>
+                <span class="tab">Open</span>
+                <span class="tab">Fullfilled</span>
+                <span class="tab">Failed</span>
+            </div>
+            <div class="input-box">
+                <select class="input input-select">
+                    <option value="Filter orders">Filter orders</option>
+                </select>
+                <input type="search" class="input input-search" placeholder="Start typing to search…" />
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Order</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Payment Status</th>
+                        <th scope="col">Campaign Status</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="order in orders | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
+                        <td data-label="Order">
+                            <a href="#">#{{order.id}}</a>
+                        </td>
+                        <td data-label="Date">{{order.date}}</td>
+                        <td data-label="Customer">{{order.customer}}</td>
+                        <td data-label="Payment Status">
+                            <span class="{{order.payment_status.class}}">{{order.payment_status.text}}</span>
+                        </td>
+                        <td data-label="Campaign Status">
+                            <span class="{{order.campaign_status.class}}">{{order.campaign_status.text}}</span>
+                        </td>
+                        <td data-label="Total">${{order.total}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pagination-box">
+                <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="icon left-icon"></button>
+                <button ng-disabled="currentPage >= orders.length/pageSize - 1" ng-click="currentPage=currentPage+1" class="icon right-icon"></button>
+            </div>
+        </div>
+    </section>
+</main>
