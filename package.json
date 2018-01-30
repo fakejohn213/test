@@ -7,7 +7,10 @@
     "description": "",
     "repository": "",
     "license": "MIT",
-    "devDependencies": {
+ "dependencies": {
+
+    "express": "^4.15.2"
+},   "devDependencies": {
        "http-server": "^0.11.1"
     },
     "scripts": {
